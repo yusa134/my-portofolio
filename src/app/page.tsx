@@ -1,113 +1,149 @@
-import Image from "next/image";
+'use client';
+
+import Image from 'next/image';
+import clsx from 'clsx';
+import Header from './components/Header/Header';
+import ButtonBasic from './components/Button/ButtonBasic';
+import { ArrowUpRight } from 'lucide-react';
+import profileImage from '@/app/assets/img/profile-image.png';
+import Element1 from '@/app/assets/img/element-1.svg';
+import Element2 from '@/app/assets/img/element-2.svg';
+import { motion } from 'framer-motion';
+import ElementBG from '@/app/assets/img/elements-line.svg';
+import ButtonBasicLink from './components/Button/ButtonBasicLink';
+import Footer from './components/Footer/Footer';
 
 export default function Home() {
+  const variants1 = {
+    animate: {
+      y: [0, 10, 0],
+      transition: {
+        duration: 5,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
+  const variants2 = {
+    animate: {
+      y: [0, 10, 0],
+      transition: {
+        duration: 4,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
+  const variants3 = {
+    animate: {
+      y: [0, 10, 0],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className={clsx('bg-black h-full min-h-screen bg-no-repeat')}>
+      {/* HEADER */}
+      <Header />
+
+      {/* Banner */}
+      <div
+        className={clsx(
+          'w-[90%] mx-auto relative flex flex-col',
+          'lg:grid lg:grid-cols-2 lg:h-[90vh] lg:items-center',
+          '2xl:max-w-7xl'
+        )}
+      >
+        <div className={clsx('order-1 mt-[105%]', 'lg:order-first lg:mt-0')}>
+          <p className={clsx('text-white font-light', 'lg:text-xl')}>
+            Hi there!{' '}
+            <span
+              className={clsx(
+                'bg-white h-[1px] w-16 mb-1 ml-2 text-white inline-block'
+              )}
+            ></span>
+          </p>
+          <h1
+            className={clsx(
+              'text-white font-bold text-3xl mt-4',
+              'lg:text-5xl'
+            )}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            I&lsquo;m Yusa Darmawan
+          </h1>
+          <p
+            className={clsx(
+              'text-white text-2xl font-light mt-4',
+              'lg:text-3xl'
+            )}
+          >
+            A Front-End Developer
+          </p>
+          <ButtonBasicLink
+            className={clsx('rounded-xl mt-5', 'lg:mt-8')}
+            linkTo={'/projects'}
+          >
+            Explore My Project <ArrowUpRight />
+          </ButtonBasicLink>
+        </div>
+        <div
+          className={clsx(
+            'relative h-full flex items-center',
+            'lg:justify-center'
+          )}
+        >
+          <div className={clsx('hidden absolute w-full', 'lg:flex')}>
+            <Image src={ElementBG} alt={''} className={clsx('w-full')} />
+          </div>
+          <div className={clsx('w-[85%] relative mt-7', 'lg:w-[50%] lg:h-96')}>
+            <motion.div
+              variants={variants1}
+              initial="initial"
+              animate="animate"
+              className={clsx('delay-0')}
+            >
+              <Image
+                src={Element1}
+                alt={''}
+                className={clsx('absolute w-full')}
+              />
+            </motion.div>
+            <motion.div
+              variants={variants2}
+              initial="initial"
+              animate="animate"
+              className={clsx('delay-0')}
+            >
+              <Image
+                src={Element2}
+                alt={''}
+                className={clsx('absolute  top-5 -right-5 w-full')}
+              />
+            </motion.div>
+            <motion.div
+              variants={variants3}
+              initial="initial"
+              animate="animate"
+              className={clsx('delay-0')}
+            >
+              <Image
+                src={profileImage}
+                alt={'Profile Image'}
+                className={clsx('absolute top-10 -right-10 w-full')}
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
